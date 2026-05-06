@@ -1,8 +1,10 @@
 package me.isaiah.multiworld.fabric;
 
+import me.isaiah.multiworld.GamemodeEnforcer;
 import me.isaiah.multiworld.MultiworldMod;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 
 public class MultiworldModFabric implements ModInitializer {
@@ -21,6 +23,10 @@ public class MultiworldModFabric implements ModInitializer {
                 MultiworldMod.register_commands(dispatcher);
             }
         );
+
+        ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register((player, origin, destination) -> {
+            GamemodeEnforcer.enforceGamemode(player, destination);
+        });
 
         MultiworldMod.init();
         versionSupportMessage();

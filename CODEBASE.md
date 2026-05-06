@@ -302,6 +302,7 @@ The entire command tree is dispatched through a single `greedyString` argument p
 | `setspawn` | `SetspawnCommand` | `multiworld.setspawn` |
 | `gamerule <rule> <value>` | `GameruleCommand` | `multiworld.gamerule` |
 | `difficulty <value> [world]` | `DifficultyCommand` | `multiworld.difficulty` |
+| `gamemode <mode> [world]` | `GamemodeCommand` | `multiworld.gamemode` |
 | `create <id> <env> [opts]` | `CreateCommand` | `multiworld.create` |
 | `delete <id>` | `DeleteCommand` | `multiworld.admin` (console only) |
 | `portal <sub> [args]` | `PortalCommand` | `multiworld.portal` |
@@ -352,6 +353,7 @@ The entire command tree is dispatched through a single `greedyString` argument p
 | `seed` | long | World generation seed |
 | `custom_generator` | String | (optional) custom generator name |
 | `difficulty` | String | `EASY`, `NORMAL`, `HARD`, `PEACEFUL` |
+| `gamemode` | String | (optional) `SURVIVAL`, `CREATIVE`, `ADVENTURE`, `SPECTATOR`, or `DEFAULT`; enforced gamemode on world entry |
 | `worldFolderSaveMode` | String | `VANILLA` or `BUKKIT` |
 | `isMultiworldWorld` | boolean | Always `true`; marks world as Multiworld-managed |
 | `gamerule_<name>` | String/Boolean/Integer | Per-world gamerule overrides |
@@ -376,6 +378,7 @@ Permission nodes follow the pattern `multiworld.<action>`:
 | `multiworld.create` | `/mw create` |
 | `multiworld.gamerule` | `/mw gamerule` |
 | `multiworld.difficulty` | `/mw difficulty` |
+| `multiworld.gamemode` | `/mw gamemode` |
 | `multiworld.portal` | `/mw portal` |
 
 Players with OP level ≥ 1, or the `multiworld.admin` node, bypass all individual permission checks.

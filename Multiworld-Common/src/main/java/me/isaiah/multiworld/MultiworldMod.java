@@ -24,6 +24,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import me.isaiah.multiworld.command.CreateCommand;
 import me.isaiah.multiworld.command.DifficultyCommand;
+import me.isaiah.multiworld.command.GamemodeCommand;
 import me.isaiah.multiworld.command.IGameruleCommand;
 import me.isaiah.multiworld.command.PortalCommand;
 import me.isaiah.multiworld.command.SetspawnCommand;
@@ -66,7 +67,8 @@ public class MultiworldMod {
     		"&a/mw list&r - List all worlds",
     		"&a/mw gamerule <rule> <value>&r - Change a worlds Gamerules",
     		"&a/mw create <id> <env> [-g=<generator> -s=<seed>]&r - create a new world",
-    		"&a/mw difficulty <value> [world id] - Sets the difficulty of a world"
+    		"&a/mw difficulty <value> [world id] - Sets the difficulty of a world",
+    		"&a/mw gamemode <mode> [world id]&r - Sets the enforced gamemode of a world"
     };
 
 	// Multiworld Mod Version
@@ -210,6 +212,7 @@ public class MultiworldMod {
     	"multiworld.spawn",
     	"multiworld.gamerule",
     	"multiworld.difficulty",
+    	"multiworld.gamemode",
     	"multiworld.tp",
     	"multiworld.create",
     	"multiworld.portal"
@@ -332,6 +335,11 @@ public class MultiworldMod {
         // Difficulty Command
         if (args[0].equalsIgnoreCase("difficulty") && Perm.check(plr, "multiworld.difficulty")) {
         	return DifficultyCommand.run(mc, plr, args);
+        }
+
+        // Gamemode Command
+        if (args[0].equalsIgnoreCase("gamemode") && Perm.check(plr, "multiworld.gamemode")) {
+        	return GamemodeCommand.run(mc, plr, args);
         }
 
         // TP Command

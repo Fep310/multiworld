@@ -4,6 +4,7 @@
 package me.isaiah.multiworld.neoforge;
 
 import me.isaiah.multiworld.I18n;
+import me.isaiah.multiworld.GamemodeEnforcer;
 import me.isaiah.multiworld.MultiworldMod;
 import me.isaiah.multiworld.command.PortalCommand;
 import me.isaiah.multiworld.portal.Portal;
@@ -23,6 +24,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.EntityTravelToDimensionEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -71,6 +73,13 @@ public class MultiworldModNeoForge {
     @SubscribeEvent
     public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         WandEventHandler.rightClickBlock(event.getEntity(), event.getLevel(), event.getHitVec());
+    }
+
+    @SubscribeEvent
+    public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (!(event.getEntity() instanceof net.minecraft.server.network.ServerPlayerEntity player)) return;
+        net.minecraft.server.world.ServerWorld world = MultiworldMod.mc.getWorld(event.getTo());
+        if (world != null) GamemodeEnforcer.enforceGamemode(player, world);
     }
     
     @SubscribeEvent

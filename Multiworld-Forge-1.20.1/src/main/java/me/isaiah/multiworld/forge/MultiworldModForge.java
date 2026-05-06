@@ -3,10 +3,12 @@
  */
 package me.isaiah.multiworld.forge;
 
+import me.isaiah.multiworld.GamemodeEnforcer;
 import me.isaiah.multiworld.MultiworldMod;
 import me.isaiah.multiworld.portal.WandEventHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -47,6 +49,13 @@ public class MultiworldModForge {
     @SubscribeEvent
     public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         WandEventHandler.rightClickBlock(event.getEntity(), event.getLevel(), event.getHitVec());
+    }
+
+    @SubscribeEvent
+    public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (!(event.getEntity() instanceof net.minecraft.server.network.ServerPlayerEntity player)) return;
+        net.minecraft.server.world.ServerWorld world = MultiworldMod.mc.getWorld(event.getTo());
+        if (world != null) GamemodeEnforcer.enforceGamemode(player, world);
     }
 
 }

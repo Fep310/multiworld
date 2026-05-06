@@ -23,6 +23,7 @@ The Multiworld Mod - Adds support for creating & teleporting to multiple worlds.
 |----------------|--------------------------------------------|------------------------------------|
 | /mw gamerule   | Gamerule Support for Custom Worlds         | /mw gamerule doDaylightCycle false |
 | /mw difficulty | Set the Difficulty for the current World   | /mw difficulty EASY                |
+| /mw gamemode   | Set the enforced Gamemode for a World      | /mw gamemode CREATIVE myWorld      |
 
 ## Portals <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/03/Nether_portal_%28animated%29.png/revision/latest?cb=20191114182303" width="128" float="right" align="right">
 The latest version of Multiworld introduces Portals. 
@@ -52,6 +53,8 @@ The permission `multiworld.admin` or being `/op`-ed grants access to every comma
 | /mw setspawn | multiworld.setspawn |
 | /mw create <id> <dim> [-g=GENERATOR -s=SEED] | multiworld.create |
 | /mw gamerule | multiworld.gamerule |
+| /mw difficulty | multiworld.difficulty |
+| /mw gamemode \<SURVIVAL\|CREATIVE\|ADVENTURE\|SPECTATOR\|DEFAULT\> [world] | multiworld.gamemode |
 etc..
  
 ## Coming Soon

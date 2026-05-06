@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import java.io.File;
 
 import me.isaiah.multiworld.I18n;
+import me.isaiah.multiworld.GamemodeEnforcer;
 import me.isaiah.multiworld.MultiworldMod;
 import me.isaiah.multiworld.Utils;
 import me.isaiah.multiworld.config.*;
@@ -81,6 +82,8 @@ public class TpCommand implements Command {
             // FabricDimensionInternals.changeDimension(plr, w, target);
 
             MultiworldMod.get_world_creator().teleleport(plr, w, sp.getX(), sp.getY(), sp.getZ());
+
+            GamemodeEnforcer.enforceGamemode(plr, w);
             
             return 1;
         }

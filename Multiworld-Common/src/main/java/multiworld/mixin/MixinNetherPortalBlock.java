@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import me.isaiah.multiworld.GamemodeEnforcer;
 import me.isaiah.multiworld.I18n;
 import me.isaiah.multiworld.MultiworldMod;
 import me.isaiah.multiworld.command.PortalCommand;
@@ -61,6 +62,8 @@ public class MixinNetherPortalBlock {
 							dest.getY(),
 							dest.getZ()
 					);
+					
+					GamemodeEnforcer.enforceGamemode((ServerPlayerEntity) entity, p.getDestWorld());
 					
 					ci.cancel();
 					return;

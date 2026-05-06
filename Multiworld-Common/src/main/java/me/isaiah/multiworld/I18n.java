@@ -38,6 +38,8 @@ public class I18n {
 	private static final String DEF_CMD_PORTAL_USAGE_CREATE = "&4Usage: /mw portal create <name> <destination>";
 	private static final String DEF_CMD_PORTAL_NO_SELECTION = "You need to make an area selection first. (/mw portal wand)";
 	private static final String DEF_CMD_DIFF_USAGE = "[&4Multiworld&r] Usage: /mw difficulty <value> [world id]";
+	private static final String DEF_CMD_GAMEMODE_USAGE = "[&4Multiworld&r] Usage: /mw gamemode <SURVIVAL|CREATIVE|ADVENTURE|SPECTATOR|DEFAULT> [world id]";
+	private static final String DEF_CMD_GAMEMODE_SET = "[&cMultiworld&r]: Enforced gamemode of world '%s' set to: %s";
 	
 	public static String TELEPORTING;
 	public static String NULL_SPAWN;
@@ -47,6 +49,8 @@ public class I18n {
 	public static String CMD_PORTAL_USAGE_CREATE;
 	public static String CMD_PORTAL_NO_SELECTION;
 	public static String CMD_DIFF_USAGE;
+	public static String CMD_GAMEMODE_USAGE;
+	public static String CMD_GAMEMODE_SET;
 
 	/**
      * Load an existing saved portals from config (YAML) 
@@ -69,6 +73,8 @@ public class I18n {
             CMD_PORTAL_USAGE_CREATE = config.getOrDefault("messages.usagePortalCreate", DEF_CMD_PORTAL_USAGE_CREATE);
             CMD_PORTAL_NO_SELECTION = config.getOrDefault("messages.usagePortalNoSelect", DEF_CMD_PORTAL_NO_SELECTION);
             CMD_DIFF_USAGE = config.getOrDefault("messages.usageDifficulty", DEF_CMD_DIFF_USAGE);
+            CMD_GAMEMODE_USAGE = config.getOrDefault("messages.usageGamemode", DEF_CMD_GAMEMODE_USAGE);
+            CMD_GAMEMODE_SET = config.getOrDefault("messages.gamemodeSet", DEF_CMD_GAMEMODE_SET);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,6 +99,8 @@ public class I18n {
             config.set("messages.usagePortalCreate", DEF_CMD_PORTAL_USAGE_CREATE);
             config.set("messages.usagePortalNoSelect", DEF_CMD_PORTAL_NO_SELECTION);
             config.set("messages.usageDifficulty", DEF_CMD_DIFF_USAGE);
+            config.set("messages.usageGamemode", DEF_CMD_GAMEMODE_USAGE);
+            config.set("messages.gamemodeSet", DEF_CMD_GAMEMODE_SET);
 
 			config.save();
         } catch (Exception e) {
